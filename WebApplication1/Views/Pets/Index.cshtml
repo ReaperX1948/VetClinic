@@ -1,0 +1,33 @@
+﻿@model IEnumerable<WebApplication1.Models.Pet>
+
+@{
+    ViewData["Title"] = "Списък с домашни любимци";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Име</th>
+            <th>Тип</th>
+            <th>Дата на раждане</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pet in Model)
+        {
+            <tr>
+                <td>@pet.Name</td>
+                <td>@pet.Type</td>
+                <td>@pet.BirthDate.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Pets", new { id = pet.Id })" class="btn btn-primary">Редактирай</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Create", "Pets")" class="btn btn-success">Добави нов домашен любимец</a>

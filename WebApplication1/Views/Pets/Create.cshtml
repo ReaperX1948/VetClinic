@@ -1,0 +1,23 @@
+﻿@model WebApplication1.Models.Pet
+
+@{
+    ViewData["Title"] = "Добави нов домашен любимец";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="Name">Име на домашния любимец</label>
+        <input type="text" class="form-control" id="Name" name="Name" required />
+    </div>
+    <div class="form-group">
+        <label for="Type">Тип на домашния любимец</label>
+        <input type="text" class="form-control" id="Type" name="Type" required />
+    </div>
+    <div class="form-group">
+        <label for="BirthDate">Дата на раждане</label>
+        <input type="date" class="form-control" id="BirthDate" name="BirthDate" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Запази</button>
+</form>

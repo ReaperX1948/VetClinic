@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebApplication1.Models.Appointment>
+
+@{
+    ViewData["Title"] = "Списък с часове за преглед";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Дата на прегледа</th>
+            <th>Домашен любимец</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var appointment in Model)
+        {
+            <tr>
+                <!-- Display the appointment date with proper formatting -->
+                <td>@appointment.AppointmentDate.ToString("yyyy-MM-dd HH:mm")</td>
+
+                <!-- Display the pet's name -->
+                <td>@appointment.Pet?.Name ?? "Не е зададено"</td> <!-- Use a null check for safety -->
+
+                <td>
+                    <!-- Edit button to go to the Edit page for the specific appointment -->
+                    <a href="@Url.Action("Edit", "Appointments", new { id = appointment.Id })" class="btn btn-primary">Редактирай</a>
+                    <!-- Optional: Delete button (if you want to add delete functionality) -->
+                    <a href="@Url.Action("Delete", "Appointments", new { id = appointment.Id })" class="btn btn-danger">Изтрий</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Link to add a new appointment -->
+<a href="@Url.Action("Create", "Appointments")" class="btn btn-success">Добави нов час за преглед</a>

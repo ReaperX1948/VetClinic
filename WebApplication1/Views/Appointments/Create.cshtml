@@ -1,0 +1,24 @@
+﻿@model WebApplication1.Models.Appointment
+
+@{
+    ViewData["Title"] = "Добави нов час за преглед";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="AppointmentDate">Дата на прегледа</label>
+        <input type="datetime-local" class="form-control" id="AppointmentDate" name="AppointmentDate" required />
+    </div>
+    <div class="form-group">
+        <label for="PetId">Избери домашен любимец</label>
+        <select class="form-control" id="PetId" name="PetId" required>
+            @foreach (var pet in ViewBag.Pets as IEnumerable<WebApplication1.Models.Pet>)
+            {
+                <option value="@pet.Id">@pet.Name</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Запази</button>
+</form>
